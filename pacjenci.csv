@@ -1,0 +1,302 @@
+wiek,płeć,ciśnienie_krwi,tętno,objawy
+32,K,135/75,78,duszność
+31,K,175/87,54,ból głowy
+29,K,129/92,53,ból w klatce piersiowej
+87,M,128/88,85,ból głowy
+38,M,143/77,69,ból w klatce piersiowej
+61,K,111/84,62,brak objawów
+62,M,105/106,108,zawroty głowy
+66,K,170/78,96,ból w klatce piersiowej
+26,K,129/109,87,zawroty głowy
+47,K,148/77,108,brak objawów
+38,M,145/73,84,zawroty głowy
+39,K,120/89,98,zmęczenie
+89,K,141/109,57,ból w klatce piersiowej
+22,M,151/77,58,ból w klatce piersiowej
+90,M,127/101,113,kołatanie serca
+76,K,133/68,81,zmęczenie
+72,M,146/74,67,nudności
+29,K,114/69,70,kołatanie serca
+26,M,148/98,109,zmęczenie
+88,K,114/103,118,zmęczenie
+61,K,137/87,70,nudności
+18,M,164/108,72,zawroty głowy
+56,K,119/83,70,ból głowy
+59,M,102/67,96,zmęczenie
+48,K,130/96,60,zawroty głowy
+80,K,168/109,66,duszność
+78,K,133/93,104,ból w klatce piersiowej
+87,K,139/85,97,nudności
+84,M,115/75,78,zawroty głowy
+61,K,175/95,79,ból w klatce piersiowej
+18,K,180/63,79,zawroty głowy
+22,M,109/92,80,zmęczenie
+80,K,169/68,110,ból w klatce piersiowej
+78,M,124/66,62,kołatanie serca
+63,M,152/89,56,zawroty głowy
+25,M,143/66,81,ból w klatce piersiowej
+42,M,117/87,73,zmęczenie
+77,K,109/88,120,zawroty głowy
+24,K,111/108,80,duszność
+70,M,161/73,101,ból głowy
+39,M,100/84,83,nudności
+54,M,171/102,112,duszność
+42,M,127/63,119,ból głowy
+58,K,106/97,111,duszność
+25,K,123/64,58,ból w klatce piersiowej
+69,K,172/75,55,zawroty głowy
+71,M,133/73,90,ból w klatce piersiowej
+51,M,116/102,88,nudności
+58,K,101/89,62,zawroty głowy
+86,K,164/76,66,brak objawów
+26,K,147/78,70,nudności
+87,M,178/101,117,ból głowy
+88,M,113/68,83,zawroty głowy
+31,K,134/78,76,brak objawów
+44,M,164/91,82,ból głowy
+29,M,135/62,50,brak objawów
+34,M,120/107,106,kołatanie serca
+89,K,114/64,69,ból głowy
+65,K,155/68,55,zmęczenie
+64,K,145/73,81,zawroty głowy
+63,M,179/107,69,ból w klatce piersiowej
+38,K,152/61,72,brak objawów
+70,K,134/70,63,kołatanie serca
+22,M,128/72,108,brak objawów
+57,K,128/61,74,kołatanie serca
+60,M,108/109,85,brak objawów
+83,M,168/81,53,zawroty głowy
+51,K,174/76,54,zawroty głowy
+73,M,140/87,115,zawroty głowy
+67,K,132/62,105,ból głowy
+84,K,146/87,58,brak objawów
+58,K,138/92,89,kołatanie serca
+59,M,137/95,66,ból w klatce piersiowej
+71,M,122/99,88,kołatanie serca
+88,K,138/78,76,kołatanie serca
+59,M,156/88,77,nudności
+39,K,136/92,92,zawroty głowy
+48,M,128/72,68,ból głowy
+23,K,160/99,59,nudności
+71,K,149/91,101,ból w klatce piersiowej
+36,K,113/109,104,ból w klatce piersiowej
+40,M,106/95,81,zawroty głowy
+76,K,159/102,117,brak objawów
+74,M,170/88,70,nudności
+75,M,131/100,85,nudności
+48,M,156/64,86,ból w klatce piersiowej
+52,M,140/94,60,duszność
+37,K,149/104,69,ból w klatce piersiowej
+26,M,152/81,119,nudności
+71,K,126/86,99,ból głowy
+66,M,100/82,88,kołatanie serca
+71,K,162/74,84,kołatanie serca
+80,K,149/81,101,duszność
+77,K,179/94,53,kołatanie serca
+90,K,110/101,104,duszność
+77,K,106/76,98,brak objawów
+45,M,141/81,98,zmęczenie
+71,M,110/90,52,ból głowy
+62,K,108/109,55,ból głowy
+49,K,102/99,69,ból w klatce piersiowej
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
