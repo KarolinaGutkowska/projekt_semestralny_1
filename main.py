@@ -1,8 +1,10 @@
 import sys
 import pandas as pd
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QTextEdit, QTabWidget, QVBoxLayout, QCheckBox, QLabel, QComboBox, QLineEdit
+from PyQt6.QtWidgets import QApplication, QWidget, QTableWidgetItem, QPushButton, QTextEdit, QTabWidget, QVBoxLayout, QCheckBox, QLabel, QComboBox, QLineEdit
 
 df = pd.read_csv("pacjenci.csv")
+
+
 
 
 class Okno(QWidget):
@@ -97,12 +99,56 @@ class Okno(QWidget):
 
         self.layout_filtrowanie.addLayout(self.hbox_cisnienie)
 
+
+
+        # --- ZMIANA: Dodanie przycisku "Filtruj" w zakładce Filtrowanie ---
+        self.przycisk_filtruj = QPushButton("Filtruj")
+        self.layout_filtrowanie.addWidget(self.przycisk_filtruj)
+        self.przycisk_filtruj.clicked.connect(self.akcja_filtruj)
+
+        # --- ZMIANA: Dodanie nowej zakładki "Tabele" ---
+        self.tab_tabele = QWidget()
+        self.tabs.addTab(self.tab_tabele, "Tabele")
+
+        self.layout_tabele = QVBoxLayout(self.tab_tabele)
+        # Tutaj później można dodawać QTableWidget lub inne widgety do wyświetlania tabel
+
+
     def klik(self):
         print("Przycisk 'Dane' został kliknięty")
 
     def wyswietl_dane(self):
         tekst = df.to_string(index=False)
         self.pole_tekstowe.setText(tekst)
+
+    def akcja_filtruj(self):
+        logi = "Filtracja rozpoczęta:\n"
+
+        # --- Opcja 1: Płeć ---
+        if self.checkbox1.isChecked():
+            plec = self.combobox_plec.currentText()
+            logi += f"Płeć: zaznaczona, wybrano -> {plec}\n"
+        else:
+            logi += "Płeć: niezaznaczona\n"
+
+        # --- Opcja 2: Wiek ---
+        if self.checkbox2.isChecked():
+            min_wiek = self.lineedit_wiek_min.text() or "brak"
+            max_wiek = self.lineedit_wiek_max.text() or "brak"
+            logi += f"Wiek: zaznaczony, min -> {min_wiek}, max -> {max_wiek}\n"
+        else:
+            logi += "Wiek: niezaznaczony\n"
+
+        # --- Opcja 3: Ciśnienie tętnicze ---
+        if self.checkbox3.isChecked():
+            min_cisn = self.lineedit_cisnienie_min.text() or "brak"
+            max_cisn = self.lineedit_cisnienie_max.text() or "brak"
+            logi += f"Ciśnienie tętnicze: zaznaczone, min -> {min_cisn}, max -> {max_cisn}\n"
+        else:
+            logi += "Ciśnienie tętnicze: niezaznaczone\n"
+
+        # --- Wypisanie w polu logów ---
+        self.pole_logow.setText(logi)
 
 
 if __name__ == "__main__":
