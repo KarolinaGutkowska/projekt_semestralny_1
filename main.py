@@ -198,6 +198,156 @@ class Okno(QWidget):
         # --- Wywołanie funkcji tworzącej tabelę ---
         self.pokaz_tabele_przefiltrowana(df_filtr)
 
+        def akcja_filtruj(self):
+            logi = ">>> START filtracji\n"
+            df_filtr = df.copy()
+
+            # --- Filtr Płeć ---
+            if self.checkbox1.isChecked():
+                plec = self.combobox_plec.currentText()
+                logi += f"Płeć: zaznaczona, wybrano -> {plec}\n"
+                try:
+                    if plec.lower() != "obie":
+                        df_filtr = df_filtr[df_filtr['płeć'].str.strip().str.lower() == plec.lower()]
+                except KeyError as e:
+                    logi += f"Błąd: brak kolumny {e}\n"
+                print(">>> Po filtrze płeć:", df_filtr.shape)
+            else:
+                logi += "Płeć: niezaznaczona\n"
+
+            # --- Filtr Wiek ---
+            if self.checkbox2.isChecked():
+                min_wiek = self.lineedit_wiek_min.text()
+                max_wiek = self.lineedit_wiek_max.text()
+                logi += f"Wiek: zaznaczony, min -> {min_wiek or 'brak'}, max -> {max_wiek or 'brak'}\n"
+                try:
+                    if min_wiek.isdigit():
+                        df_filtr = df_filtr[df_filtr['wiek'] >= int(min_wiek)]
+                    if max_wiek.isdigit():
+                        df_filtr = df_filtr[df_filtr['wiek'] <= int(max_wiek)]
+                except KeyError as e:
+                    logi += f"Błąd: brak kolumny {e}\n"
+                print(">>> Po filtrze wiek:", df_filtr.shape)
+            else:
+                logi += "Wiek: niezaznaczony\n"
+
+            # --- Filtr Ciśnienie ---
+            if self.checkbox3.isChecked():
+                min_cisn = self.lineedit_cisnienie_min.text()
+                max_cisn = self.lineedit_cisnienie_max.text()
+                logi += f"Ciśnienie tętnicze: zaznaczone, min -> {min_cisn or 'brak'}, max -> {max_cisn or 'brak'}\n"
+                try:
+                    if min_cisn.isdigit():
+                        df_filtr = df_filtr[df_filtr['ciśnienie_krwi'] >= int(min_cisn)]
+                    if max_cisn.isdigit():
+                        df_filtr = df_filtr[df_filtr['ciśnienie_krwi'] <= int(max_cisn)]
+                except KeyError as e:
+                    logi += f"Błąd: brak kolumny {e}\n"
+                print(">>> Po filtrze ciśnienie:", df_filtr.shape)
+            else:
+                logi += "Ciśnienie tętnicze: niezaznaczone\n"
+
+    def akcja_filtruj(self):
+        logi = ">>> Filtracja rozpoczęta:\n"
+
+        # 1️⃣ Stwórz kopię danych
+        df_filtr = df.copy()
+        logi += f"Start df_filtr.shape: {df_filtr.shape}\n"
+        logi += f"{df_filtr.head()}\n"
+        print(logi)
+
+        # --- Opcja 1: Płeć ---
+        if self.checkbox1.isChecked():
+            plec = self.combobox_plec.currentText()
+            logi += f">>> Płeć: zaznaczona, wybrano -> {plec}\n"
+            try:
+                if plec.lower() != "obie":
+                    df_filtr = df_filtr[df_filtr['płeć'].str.strip().str.lower() == plec.lower()]
+                logi += f">>> Po filtrze płeć df_filtr.shape: {df_filtr.shape}\n"
+                logi += f"{df_filtr.head()}\n"
+            except KeyError as e:
+                logi += f"!!! Błąd: brak kolumny {e}\n"
+            except Exception as e:
+                logi += f"!!! Inny błąd przy filtrze płeć: {e}\n"
+        else:
+            logi += ">>> Płeć: niezaznaczona\n"
+
+        # --- Opcja 2: Wiek ---
+        if self.checkbox2.isChecked():
+            min_wiek = self.lineedit_wiek_min.text()
+            max_wiek = self.lineedit_wiek_max.text()
+            logi += f">>> Wiek: zaznaczony, min -> {min_wiek or 'brak'}, max -> {max_wiek or 'brak'}\n"
+            try:
+                df_filtr['wiek'] = pd.to_numeric(df_filtr['wiek'], errors='coerce')
+                if min_wiek.isdigit():
+                    df_filtr = df_filtr[df_filtr['wiek'] >= int(min_wiek)]
+                if max_wiek.isdigit():
+                    df_filtr = df_filtr[df_filtr['wiek'] <= int(max_wiek)]
+                logi += f">>> Po filtrze wiek df_filtr.shape: {df_filtr.shape}\n"
+                logi += f"{df_filtr.head()}\n"
+            except KeyError as e:
+                logi += f"!!! Błąd: brak kolumny {e}\n"
+            except Exception as e:
+                logi += f"!!! Inny błąd przy filtrze wiek: {e}\n"
+        else:
+            logi += ">>> Wiek: niezaznaczony\n"
+
+        # --- Opcja 3: Ciśnienie tętnicze ---
+        if self.checkbox3.isChecked():
+            min_cisn = self.lineedit_cisnienie_min.text()
+            max_cisn = self.lineedit_cisnienie_max.text()
+            logi += f">>> Ciśnienie tętnicze: zaznaczone, min -> {min_cisn or 'brak'}, max -> {max_cisn or 'brak'}\n"
+            try:
+                df_filtr['ciśnienie_krwi'] = pd.to_numeric(df_filtr['ciśnienie_krwi'], errors='coerce')
+                if min_cisn.isdigit():
+                    df_filtr = df_filtr[df_filtr['ciśnienie_krwi'] >= int(min_cisn)]
+                if max_cisn.isdigit():
+                    df_filtr = df_filtr[df_filtr['ciśnienie_krwi'] <= int(max_cisn)]
+                logi += f">>> Po filtrze ciśnienie df_filtr.shape: {df_filtr.shape}\n"
+                logi += f"{df_filtr.head()}\n"
+            except KeyError as e:
+                logi += f"!!! Błąd: brak kolumny {e}\n"
+            except Exception as e:
+                logi += f"!!! Inny błąd przy filtrze ciśnienie: {e}\n"
+        else:
+            logi += ">>> Ciśnienie tętnicze: niezaznaczone\n"
+
+        # --- Logi w GUI ---
+        self.pole_logow.setText(logi)
+        print(">>> df_filtr końcowy:", df_filtr.shape)
+        print(df_filtr.head())
+
+        # --- Tworzymy grupy wiekowe ---
+        try:
+            df_filtr['grupa_wiekowa'] = pd.cut(
+                df_filtr['wiek'], bins=[0, 30, 60, 90], labels=["0-30", "30-60", "60-90"], right=False
+            )
+            df_filtr = df_filtr.dropna(subset=['grupa_wiekowa'])
+            logi += f">>> df_filtr po utworzeniu grup wiekowych df_filtr.shape: {df_filtr.shape}\n"
+            logi += f"{df_filtr[['wiek', 'grupa_wiekowa']].head()}\n"
+            print(logi)
+        except Exception as e:
+            logi += f"!!! Błąd przy tworzeniu grup wiekowych: {e}\n"
+            print(logi)
+
+        # --- Grupowanie po płci i grupie wiekowej ---
+        try:
+            grupa = df_filtr.groupby(['płeć', 'grupa_wiekowa'])
+            statystyki = grupa[['ciśnienie_krwi', 'wiek', 'tętno']].agg(['mean', 'median']).reset_index()
+            # Spłaszczamy MultiIndex kolumn
+            statystyki.columns = ['_'.join(col).strip('_') if isinstance(col, tuple) else col for col in
+                                  statystyki.columns]
+            logi += f">>> Statystyki końcowe df.shape: {statystyki.shape}\n"
+            logi += f"{statystyki.head()}\n"
+            print(logi)
+        except Exception as e:
+            logi += f"!!! Błąd przy grupowaniu lub obliczaniu statystyk: {e}\n"
+            print(logi)
+            statystyki = pd.DataFrame()  # pusty DF w przypadku błędu
+
+        # --- Wywołanie funkcji tworzącej tabelę ---
+        self.pokaz_tabele_przefiltrowana(statystyki)
+
     def pokaz_tabele_przefiltrowana(self, df_filtr):
         print(">>> START funkcji pokaz_tabele_przefiltrowana")
 
